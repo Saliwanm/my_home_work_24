@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">{{ product.title }}</h1>
+        <p>{{ product.description }}</p>
+        <p>{{ product.price }}</p>
+{#        <p>{{ product.categoryproduct_set }}</p>#}
+        <a href="#">{{ product.user.first_name }} {{ product.user.last_name }}</a>
+        <a href="#">{{ product.approved_by.username }}</a>
+        {% if user.is_staff == 1 or user.is_superuser == 1 or product.approved_by.username == user.username %}
+        <a href="{% url 'edit_product' id=product.id%}" class="btn btn-info">Edit product</a>
+        <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Delete product</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% if user.is_staff == 1 or user.is_superuser == 1%}
+        <button class="btn btn-danger">Delete</button>
+        {% else %}
+            <p>Sorry, but you have no rights </p>
+        {% endif %}
+        <br>
+    </form>
+</div>
+{% endblock %}
